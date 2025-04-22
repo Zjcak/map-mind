@@ -54,6 +54,15 @@ class Command {
     this.mindMap.keyCommand.addShortcut('Control+y', () => {
       this.mindMap.execCommand('FORWARD')
     })
+      // ++ 添加我们的自定义快捷键 ++
+    // 快捷键：Ctrl+Alt+L
+    // 功能：在控制台打印选中节点的信息 (ID 和文本)
+    // 注意：logSelectedNodeInfo 是 KeyCommand 实例的方法，需要绑定 this 到 keyCommand 实例
+    this.mindMap.keyCommand.addShortcut(
+      'Control+Alt+l', // 快捷键组合 (注意大小写和连接符)
+      this.mindMap.keyCommand.logSelectedNodeInfo.bind(this.mindMap.keyCommand) // 要执行的函数，并绑定正确的 this
+  );
+  // ++ 添加结束 ++
   }
 
   //  执行命令
