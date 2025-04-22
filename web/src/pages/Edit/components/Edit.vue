@@ -97,18 +97,18 @@ import Themes from 'simple-mind-map-plugin-themes'
 // 协同编辑插件
 // import Cooperate from 'simple-mind-map/src/plugins/Cooperate.js'
 // 以下插件为付费插件，详情请查看开发文档。依次为：手绘风格插件、标记插件、编号插件、Freemind软件格式导入导出插件、Excel软件格式导入导出插件、待办插件、节点连线流动效果插件、动量效果插件、向右鱼骨图插件、节点链接插件、扩展节点形状插件、扩展主题列表插件
-import HandDrawnLikeStyle from 'simple-mind-map-plugin-handdrawnlikestyle'
-import Notation from 'simple-mind-map-plugin-notation'
-import Numbers from 'simple-mind-map-plugin-numbers'
-import Freemind from 'simple-mind-map-plugin-freemind'
-import Excel from 'simple-mind-map-plugin-excel'
-import Checkbox from 'simple-mind-map-plugin-checkbox'
-import LineFlow from 'simple-mind-map-plugin-lineflow'
-import Momentum from 'simple-mind-map-plugin-momentum'
-import RightFishbone from 'simple-mind-map-plugin-right-fishbone'
-import NodeLink from 'simple-mind-map-plugin-node-link'
-import MoreShapes from 'simple-mind-map-plugin-more-shapes'
-import MoreThemes from 'simple-mind-map-plugin-more-themes'
+//import HandDrawnLikeStyle from 'simple-mind-map-plugin-handdrawnlikestyle'
+//import Notation from 'simple-mind-map-plugin-notation'
+//import Numbers from 'simple-mind-map-plugin-numbers'
+//import Freemind from 'simple-mind-map-plugin-freemind'
+//import Excel from 'simple-mind-map-plugin-excel'
+//import Checkbox from 'simple-mind-map-plugin-checkbox'
+//import LineFlow from 'simple-mind-map-plugin-lineflow'
+//import Momentum from 'simple-mind-map-plugin-momentum'
+//import RightFishbone from 'simple-mind-map-plugin-right-fishbone'
+//import NodeLink from 'simple-mind-map-plugin-node-link'
+//import MoreShapes from 'simple-mind-map-plugin-more-shapes'
+//import MoreThemes from 'simple-mind-map-plugin-more-themes'
 // npm link simple-mind-map simple-mind-map-plugin-excel simple-mind-map-plugin-freemind simple-mind-map-plugin-numbers simple-mind-map-plugin-notation simple-mind-map-plugin-handdrawnlikestyle simple-mind-map-plugin-checkbox simple-mind-map-plugin-lineflow simple-mind-map-plugin-momentum simple-mind-map-plugin-right-fishbone simple-mind-map-plugin-node-link
 // simple-mind-map-plugin-themes
 // simple-mind-map-plugin-more-themes simple-mind-map-plugin-more-shapes
@@ -402,7 +402,7 @@ export default {
         data: root,
         fit: false,
         layout: layout,
-        theme: theme.template,
+        theme: 'dark', // 将 theme.template 替换为 'dark',
         themeConfig: theme.config,
         viewData: view,
         nodeTextEditZIndex: 1000,
@@ -681,71 +681,82 @@ export default {
     loadPlugins() {
       if (this.openNodeRichText) this.addRichTextPlugin()
       if (this.isShowScrollbar) this.addScrollbarPlugin()
-      if (typeof HandDrawnLikeStyle !== 'undefined') {
-        this.$store.commit('setSupportHandDrawnLikeStyle', true)
-        if (this.isUseHandDrawnLikeStyle) this.addHandDrawnLikeStylePlugin()
-      }
-      if (typeof Momentum !== 'undefined') {
-        this.$store.commit('setSupportMomentum', true)
-        if (this.isUseMomentum) this.addMomentumPlugin()
-      }
-      if (typeof Notation !== 'undefined') {
-        this.mindMap.addPlugin(Notation)
-        this.$store.commit('setSupportMark', true)
-      }
-      if (typeof Numbers !== 'undefined') {
-        this.mindMap.addPlugin(Numbers)
-        this.$store.commit('setSupportNumbers', true)
-      }
-      if (typeof Freemind !== 'undefined') {
-        this.mindMap.addPlugin(Freemind)
-        this.$store.commit('setSupportFreemind', true)
-        Vue.prototype.Freemind = Freemind
-      }
-      if (typeof Excel !== 'undefined') {
-        this.mindMap.addPlugin(Excel)
-        this.$store.commit('setSupportExcel', true)
-        Vue.prototype.Excel = Excel
-      }
-      if (typeof Checkbox !== 'undefined') {
-        this.mindMap.addPlugin(Checkbox)
-        this.$store.commit('setSupportCheckbox', true)
-      }
-      if (typeof LineFlow !== 'undefined') {
-        this.mindMap.addPlugin(LineFlow)
-        this.$store.commit('setSupportLineFlow', true)
-      }
-      if (typeof RightFishbone !== 'undefined') {
-        this.mindMap.addPlugin(RightFishbone)
-        this.$store.commit('setSupportRightFishbone', true)
-      }
-      if (typeof NodeLink !== 'undefined') {
-        this.mindMap.addPlugin(NodeLink)
-        this.$store.commit('setSupportNodeLink', true)
-      }
-      if (typeof MoreShapes !== 'undefined') {
-        this.mindMap.addPlugin(MoreShapes)
-        this.$store.commit('setSupportMoreShapes', true)
-      }
-      // 扩展侧边主题列表
-      if (typeof MoreThemes !== 'undefined') {
-        const extendThemeGroupList = [
-          {
-            name: '带背景', // 主题组名称
-            // 主题列表
-            list: [...MoreThemes.lightList, ...MoreThemes.darkList].map(
-              item => {
-                return {
-                  ...item,
-                  img: MoreThemes.themeImgMap[item.value]
-                }
-              }
-            )
-          }
-        ]
-        this.$store.commit('setExtendThemeGroupList', extendThemeGroupList)
-        this.$store.commit('setBgList', MoreThemes.bgList)
-      }
+       // 注释掉下面这块 HandDrawnLikeStyle 的逻辑
+  // if (typeof HandDrawnLikeStyle !== 'undefined') {
+  //   this.$store.commit('setSupportHandDrawnLikeStyle', true)
+  //   if (this.isUseHandDrawnLikeStyle) this.addHandDrawnLikeStylePlugin()
+  // }
+  // 注释掉下面这块 Momentum 的逻辑
+  // if (typeof Momentum !== 'undefined') {
+  //   this.$store.commit('setSupportMomentum', true)
+  //   if (this.isUseMomentum) this.addMomentumPlugin()
+  // }
+  // 注释掉下面这块 Notation 的逻辑
+  // if (typeof Notation !== 'undefined') {
+  //   this.mindMap.addPlugin(Notation)
+  //   this.$store.commit('setSupportMark', true)
+  // }
+  // 注释掉下面这块 Numbers 的逻辑
+  // if (typeof Numbers !== 'undefined') {
+  //   this.mindMap.addPlugin(Numbers)
+  //   this.$store.commit('setSupportNumbers', true)
+  // }
+  // 注释掉下面这块 Freemind 的逻辑
+  // if (typeof Freemind !== 'undefined') {
+  //   this.mindMap.addPlugin(Freemind)
+  //   this.$store.commit('setSupportFreemind', true)
+  //   Vue.prototype.Freemind = Freemind
+  // }
+  // 注释掉下面这块 Excel 的逻辑
+  // if (typeof Excel !== 'undefined') {
+  //   this.mindMap.addPlugin(Excel)
+  //   this.$store.commit('setSupportExcel', true)
+  //   Vue.prototype.Excel = Excel
+  // }
+  // 注释掉下面这块 Checkbox 的逻辑
+  // if (typeof Checkbox !== 'undefined') {
+  //   this.mindMap.addPlugin(Checkbox)
+  //   this.$store.commit('setSupportCheckbox', true)
+  // }
+  // 注释掉下面这块 LineFlow 的逻辑
+  // if (typeof LineFlow !== 'undefined') {
+  //   this.mindMap.addPlugin(LineFlow)
+  //   this.$store.commit('setSupportLineFlow', true)
+  // }
+  // 注释掉下面这块 RightFishbone 的逻辑
+  // if (typeof RightFishbone !== 'undefined') {
+  //   this.mindMap.addPlugin(RightFishbone)
+  //   this.$store.commit('setSupportRightFishbone', true)
+  // }
+  // 注释掉下面这块 NodeLink 的逻辑
+  // if (typeof NodeLink !== 'undefined') {
+  //   this.mindMap.addPlugin(NodeLink)
+  //   this.$store.commit('setSupportNodeLink', true)
+  // }
+  // 注释掉下面这块 MoreShapes 的逻辑
+  // if (typeof MoreShapes !== 'undefined') {
+  //   this.mindMap.addPlugin(MoreShapes)
+  //   this.$store.commit('setSupportMoreShapes', true)
+  // }
+  // 注释掉下面这块 MoreThemes 的逻辑 (与 import 对应)
+  // if (typeof MoreThemes !== 'undefined') {
+  //   const extendThemeGroupList = [
+  //     {
+  //       name: '带背景', // 主题组名称
+  //       // 主题列表
+  //       list: [...MoreThemes.lightList, ...MoreThemes.darkList].map(
+  //         item => {
+  //           return {
+  //             ...item,
+  //             img: MoreThemes.themeImgMap[item.value]
+  //           }
+  //         }
+  //       )
+  //     }
+  //   ]
+  //   this.$store.commit('setExtendThemeGroupList', extendThemeGroupList)
+  //   this.$store.commit('setBgList', MoreThemes.bgList)
+  //}
     },
 
     // url中是否存在要打开的文件
@@ -843,44 +854,45 @@ export default {
     },
 
     // 加载手绘风格插件
-    addHandDrawnLikeStylePlugin() {
-      try {
-        if (!this.mindMap) return
-        this.mindMap.addPlugin(HandDrawnLikeStyle)
-        this.mindMap.reRender()
-      } catch (error) {
-        console.log('手绘风格插件不存在')
-      }
-    },
+  // addHandDrawnLikeStylePlugin() {
+  //   try {
+  //     if (!this.mindMap) return
+  //     this.mindMap.addPlugin(HandDrawnLikeStyle)
+  //     this.mindMap.reRender()
+  //   } catch (error) {
+  //     console.log('手绘风格插件不存在')
+  //   }
+  // },
 
     // 移除手绘风格插件
-    removeHandDrawnLikeStylePlugin() {
-      try {
-        this.mindMap.removePlugin(HandDrawnLikeStyle)
-        this.mindMap.reRender()
-      } catch (error) {
-        console.log('手绘风格插件不存在')
-      }
-    },
+    // removeHandDrawnLikeStylePlugin() {
+  //   try {
+  //     this.mindMap.removePlugin(HandDrawnLikeStyle)
+  //     this.mindMap.reRender()
+  //   } catch (error) {
+  //     console.log('手绘风格插件不存在')
+  //   }
+  // },
 
     // 加载动量效果插件
-    addMomentumPlugin() {
-      try {
-        if (!this.mindMap) return
-        this.mindMap.addPlugin(Momentum)
-      } catch (error) {
-        console.log('动量效果插件不存在')
-      }
-    },
+    // addMomentumPlugin() {
+  //   try {
+  //     if (!this.mindMap) return
+  //     this.mindMap.addPlugin(Momentum)
+  //   } catch (error) {
+  //     console.log('动量效果插件不存在')
+  //   }
+  // },
 
     // 移除动量效果插件
-    removeMomentumPlugin() {
-      try {
-        this.mindMap.removePlugin(Momentum)
-      } catch (error) {
-        console.log('动量效果插件不存在')
-      }
-    },
+  // 注释掉 removeMomentumPlugin 方法
+  // removeMomentumPlugin() {
+  //   try {
+  //     this.mindMap.removePlugin(Momentum)
+  //   } catch (error) {
+  //     console.log('动量效果插件不存在')
+  //   }
+  // },
 
     // 测试动态插入节点
     testDynamicCreateNodes() {
